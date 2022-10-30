@@ -10,12 +10,12 @@ namespace AI_ONITAMA_2022
     
     public class GameState
     {
-        Char[,] state;
-        bool isPlayerMove;
+        public Char[,] state;
+        public bool isPlayerMove;
 
-        Card[] playerCard;
-        Card[] enemyCard;
-        Card neutralCard;
+        public Card[] playerCard;
+        public Card[] enemyCard;
+        public Card neutralCard;
         private void Reset()
         {
             // init card
