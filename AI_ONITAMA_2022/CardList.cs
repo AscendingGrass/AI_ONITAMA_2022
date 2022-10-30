@@ -143,9 +143,9 @@ namespace AI_ONITAMA_2022
             cardList[14] = new Card("Ox", tempCoor14, true);
 
             Coordinate[] tempCoor15 =  {
-                new Coordinate(-1, 1),
+                new Coordinate(1, -1),
                 new Coordinate(1, 1 ),
-                new Coordinate(0, 1),
+                new Coordinate(-1, 0),
 
             };
             cardList[15] = new Card("Cobra", tempCoor15, false);

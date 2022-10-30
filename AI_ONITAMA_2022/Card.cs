@@ -23,5 +23,32 @@ namespace AI_ONITAMA_2022
             this.name = name;
             this.isPlayer = isPlayer;
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
+
+
+       
+
+        public Coordinate[] GetPlayerMove()
+        {
+            return playerMove;
+        }
+        public Coordinate[] GetEnemyMove()
+        {
+            return playerMove;
+        }
+
+        public Boolean IsPlayer()
+        {
+            return isPlayer;
+        }
+
+        public String GetName()
+        {
+            return this.name;
+        }
     }
 }
