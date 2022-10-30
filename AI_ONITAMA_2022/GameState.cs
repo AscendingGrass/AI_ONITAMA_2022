@@ -12,6 +12,7 @@ namespace AI_ONITAMA_2022
         public Char[,] state;
         bool isPlayerMove;
 
+
         private void reset()
         {
             state = new char[5, 5];
