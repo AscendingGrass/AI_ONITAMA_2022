@@ -15,6 +15,7 @@ namespace AI_ONITAMA_2022
         public Form1()
         {
             InitializeComponent();
+            Console.WriteLine("asdhflksadjhf");
         }
     }
 }
