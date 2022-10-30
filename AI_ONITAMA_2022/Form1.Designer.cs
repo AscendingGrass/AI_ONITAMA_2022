@@ -1,7 +1,7 @@
 ﻿
 namespace AI_ONITAMA_2022
 {
-    partial class Form1
+    partial class OnitamaForm
     {
         /// <summary>
         /// Required designer variable.

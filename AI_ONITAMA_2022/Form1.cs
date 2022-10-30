@@ -10,12 +10,22 @@ using System.Windows.Forms;
 
 namespace AI_ONITAMA_2022
 {
-    public partial class Form1 : Form
+    public partial class OnitamaForm : Form
     {
-        public Form1()
+        public GameState currentState;
+
+        public OnitamaForm()
         {
             InitializeComponent();
+            currentState = new GameState();
+        }
+
+        public void ResetGame()
+        {
 
         }
+
+
+
     }
 }

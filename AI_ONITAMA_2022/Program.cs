@@ -16,7 +16,7 @@ namespace AI_ONITAMA_2022
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new OnitamaForm());
         }
     }
 }
