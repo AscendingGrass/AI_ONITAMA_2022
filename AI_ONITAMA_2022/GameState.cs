@@ -15,7 +15,6 @@ namespace AI_ONITAMA_2022
         private void reset()
         {
             state = new char[5, 5];
-
             isPlayerMove = false;
             for (int i = 0; i < 5; i++)
             {
@@ -47,9 +46,8 @@ namespace AI_ONITAMA_2022
 
         public GameState()
         {
-            reset();​​
+            reset();
         }
-
 
     }
 }
