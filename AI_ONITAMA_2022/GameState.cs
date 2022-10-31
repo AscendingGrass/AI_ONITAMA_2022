@@ -113,11 +113,74 @@ namespace AI_ONITAMA_2022
             return this;
         }
 
+        public (List<Coordinate>,List<int>) getPosCoor(Coordinate startCoor,Card card)
+        {
+            Coordinate[] enemyMoveTMp = card.GetEnemyMove();
+            Coordinate[] plaMoveTMp = card.GetPlayerMove();
+
+
+            List<Coordinate> coor = new List<Coordinate>();
+            List<int> cardIdx = new List<int>();
+            for (int i = 0;i < card.GetPlayerMove().Length;i++)
+            {
+                int cardMoveIndex = i;
+                bool canAdd = true;
+                if (this.isPlayerMove)
+                {
+                    Coordinate[] playerMove = card.GetPlayerMove();
+                    if (startCoor.X + playerMove[cardMoveIndex].X < 0 ||
+                        startCoor.Y + playerMove[cardMoveIndex].Y < 0 ||
+                        startCoor.X + playerMove[cardMoveIndex].X > 4 ||
+                        startCoor.Y + playerMove[cardMoveIndex].Y > 4)
+                    {
+                        canAdd = false;
+                    }
+                    else if (this.state[startCoor.Y + playerMove[cardMoveIndex].Y, startCoor.X + playerMove[cardMoveIndex].X] == 'p' ||
+                       this.state[startCoor.Y + playerMove[cardMoveIndex].Y, startCoor.X + playerMove[cardMoveIndex].X] == 'P')
+                    {
+                        canAdd = false;
+                    }
+                }
+                else if (!this.isPlayerMove)
+                {
+                    Coordinate[] enemyMove = card.GetEnemyMove();
+                    if (startCoor.X + enemyMove[cardMoveIndex].X < 0 ||
+                        startCoor.Y + enemyMove[cardMoveIndex].Y < 0 ||
+                        startCoor.X + enemyMove[cardMoveIndex].X > 4 ||
+                        startCoor.Y + enemyMove[cardMoveIndex].Y > 4)
+                    {
+                        canAdd = false;
+                    }
+                    else if (this.state[startCoor.Y + enemyMove[cardMoveIndex].Y, startCoor.X + enemyMove[cardMoveIndex].X] == 'b' ||
+                       this.state[startCoor.Y + enemyMove[cardMoveIndex].Y, startCoor.X + enemyMove[cardMoveIndex].X] == 'B')
+                    {
+                        canAdd = false;
+                    }
+                }
+                if (canAdd)
+                {
+                    cardIdx.Add(cardMoveIndex);
+                    if (this.isPlayerMove)
+                    {
+                        Coordinate temp = card.GetPlayerMove()[cardMoveIndex];
+                        coor.Add((startCoor + temp));
+                    }
+                    else
+                    {
+                        Coordinate temp = card.GetEnemyMove()[cardMoveIndex];
+                        coor.Add((startCoor + temp));
+
+                    }
+                    
+                }
+            }
+            return (coor, cardIdx);
+        }
         
 
         public (bool, String) Step(Coordinate startCoor, Card card, int cardMoveIndex )
         {
-            /// return isWin and info
+            /// return moveSucess and info
             /// 
 
             Char temp = this.state[startCoor.Y, startCoor.X];
@@ -198,7 +261,7 @@ namespace AI_ONITAMA_2022
                 isPlayerMove = !isPlayerMove;
             }
             
-            return (false, "");
+            return (canReplace, "");
         }
 
 

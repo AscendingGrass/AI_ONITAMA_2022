@@ -38,7 +38,7 @@ namespace AI_ONITAMA_2022
         }
         public Coordinate[] GetEnemyMove()
         {
-            return playerMove;
+            return enemyMove;
         }
 
         public Boolean IsPlayer()

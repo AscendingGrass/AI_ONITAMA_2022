@@ -17,7 +17,12 @@ namespace AI_ONITAMA_2022
         public OnitamaForm()
         {
             InitializeComponent();
-            currentState = new GameState();
+            //currentState = new GameState();
+            
+            Form2 formNow = new Form2(this);
+            formNow.Show();
+            
+
         }
 
         public void ResetGame()
@@ -25,7 +30,11 @@ namespace AI_ONITAMA_2022
 
         }
 
+        private void OnitamaForm_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
 
-
+        }
     }
 }
