@@ -3,6 +3,8 @@ namespace AI_ONITAMA_2022
 {
     public struct Coordinate
     {
+        public static readonly Coordinate Minus = new Coordinate(-1, -1);
+
         public int X, Y;
 
         #region constructors
@@ -25,6 +27,10 @@ namespace AI_ONITAMA_2022
             new Coordinate(c1.X / c2.X, c1.Y / c2.Y);
         public static Coordinate operator /(Coordinate c1, int div) =>
             new Coordinate(c1.X / div, c1.Y / div);
+        public static bool operator ==(Coordinate c1, Coordinate c2) =>
+            c1.X == c2.X && c1.Y == c2.Y;
+        public static bool operator !=(Coordinate c1, Coordinate c2) =>
+            c1.X != c2.X || c1.Y != c2.Y;
 
         #endregion
 

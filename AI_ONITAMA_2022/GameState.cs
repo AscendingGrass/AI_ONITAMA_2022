@@ -16,6 +16,10 @@ namespace AI_ONITAMA_2022
         public Card[] playerCard;
         public Card[] enemyCard;
         public Card neutralCard;
+
+        // this event will execute if CheckGameOver returns true
+        public event EventHandler<GameOverEventArgs> OnGameOver;
+
         private void Reset()
         {
             // init card
@@ -264,7 +268,47 @@ namespace AI_ONITAMA_2022
             return (canReplace, "");
         }
 
+        //get the first found coordinate of a pawn based of its character, will return (-1,-1) if not found
+        //searches from (x = 0, y = 0) -> (x = n, y = 0) -> (x = n, y = n)
+        public Coordinate GetPositionOf(char character)
+        {
+            for (int i = 0; i < state.GetLength(0); i++)
+            {
+                for (int j = 0; j < state.GetLength(1); j++)
+                {
+                    if (state[i, j] == character) return new Coordinate(j, i);
+                }
+            }
+            return Coordinate.Minus;
+        }
 
+        //check if game is over, it will invoke the OnGameOver event if true
+        public bool CheckGameOver()
+        {
+            var playerPos = GetPositionOf('P');
+            var botPos = GetPositionOf('B');
+            if (botPos == Coordinate.Minus)
+            {
+                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "player", Condition = WinCondition.KingDeath });
+                return true;
+            }
+            if (playerPos == Coordinate.Minus)
+            {
+                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "bot", Condition = WinCondition.KingDeath });
+                return true;
+            }
+            if (playerPos == new Coordinate(2,0))
+            {
+                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "player", Condition = WinCondition.TempleTakenOver });
+                return true;
+            }
+            if (botPos == new Coordinate(2,4))
+            {
+                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "bot", Condition = WinCondition.TempleTakenOver });
+                return true;
+            }
+            return false;
+        }
 
     }
 }
