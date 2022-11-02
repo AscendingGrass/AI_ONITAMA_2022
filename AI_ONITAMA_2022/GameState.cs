@@ -83,15 +83,19 @@ namespace AI_ONITAMA_2022
 
         private GameState CloneState(GameState toCLone)
         {
-            // clone card
+           
             GameState temp = new GameState();
+            temp.isPlayerMove = toCLone.isPlayerMove;
+
+            // clone card
             temp.playerCard = new Card[2];
             temp.enemyCard = new Card[2];
 
+
             for (int i = 0; i < 2; i++)
             {
-                playerCard[i] = toCLone.playerCard[i];
-                enemyCard[i] = toCLone.enemyCard[i];
+                temp.playerCard[i] = toCLone.playerCard[i];
+                temp.enemyCard[i] = toCLone.enemyCard[i];
             }
             temp.neutralCard = toCLone.neutralCard;
 
@@ -186,7 +190,7 @@ namespace AI_ONITAMA_2022
         {
             /// return moveSucess and info
             /// 
-
+            staticBoardEvaluatorValue();
             Char temp = this.state[startCoor.Y, startCoor.X];
             bool canReplace = true;
 
@@ -282,6 +286,72 @@ namespace AI_ONITAMA_2022
             return Coordinate.Minus;
         }
 
+        public int staticBoardEvaluatorValue()
+        {
+            // bot + , player -
+            int countBot = 0;
+            int countPlayer = 0;
+            Coordinate playerCoor = new Coordinate(-1000000, -1000000);
+            Coordinate botCoor = new Coordinate(-1000000, -1000000);
+            Coordinate playerWinCoor = new Coordinate(2,0);
+            Coordinate botWinCoor = new Coordinate(2, 4);
+
+            bool playerAlive = false;
+            bool botAlive = false;
+            for (int i = 0;i < 5;i++)
+            {
+                for(int j = 0;j < 5;j++)
+                {
+                    if(state[i, j] == 'p' || state[i,j] == 'P')
+                    {
+                        if(state[i, j] == 'P')
+                        {
+                            playerCoor.Y = i;
+                            playerCoor.X = j;
+                            playerAlive = true;
+                        }
+                        countPlayer++;
+                    }
+                    if (state[i,j] == 'b' || state[i,j] == 'B')
+                    {
+                        if (state[i, j] == 'B')
+                        {
+                            botCoor.Y = i;
+                            botCoor.X = j;
+                            botAlive = true;
+                        }
+                        countBot++; 
+                    }
+                }
+            }
+
+            Coordinate disPlayerCoor = playerCoor - playerWinCoor;
+            Coordinate disBotCoor = botCoor - botWinCoor;
+            int playerDistValue = Math.Abs(disPlayerCoor.Y) + Math.Abs(disPlayerCoor.X);
+            int botDistValue = -Math.Abs(disBotCoor.Y) - Math.Abs(disBotCoor.X);
+
+            if(playerDistValue == 0)
+            {
+                botAlive = false;
+            }
+            if (botDistValue == 0)
+            {
+                playerAlive = false;
+            }
+
+            int sbeValNow = countBot + botDistValue + playerDistValue - countPlayer;
+            if(!playerAlive)
+            {
+                sbeValNow = 1000000;
+            }
+            if(!botAlive)
+            {
+                sbeValNow = -1000000;
+            }
+
+            return sbeValNow;
+        }
+
         //check if game is over, it will invoke the OnGameOver event if true
         public bool CheckGameOver()
         {
@@ -308,6 +378,89 @@ namespace AI_ONITAMA_2022
                 return true;
             }
             return false;
+        }
+
+        public (List<GameState>, List<Coordinate> ,List<Card>, List<int>) getAllPossibleMove()
+        {
+            List<GameState> gameStateList = new List<GameState>();
+            List<Coordinate> startFromList = new List<Coordinate>();
+            List<Card> gameCardList = new List<Card>();
+            List<int> gameCardIdxList = new List<int>();
+
+            int cardLength = this.enemyCard.Length;
+            if (this.isPlayerMove)
+            {
+                cardLength = this.playerCard.Length;
+            }
+
+
+            for (int cardIdx = 0; cardIdx < cardLength; cardIdx++)
+            {
+                Card cardNow = this.enemyCard[cardIdx];
+                if (this.isPlayerMove)
+                {
+                    cardNow = this.playerCard[cardIdx];
+                } 
+                Coordinate[] cardPosMove = cardNow.GetEnemyMove();
+                if(this.isPlayerMove)
+                {
+                    cardPosMove = cardNow.GetPlayerMove();
+                }
+
+                for (int cardMoveIdx = 0; cardMoveIdx < cardPosMove.Length; cardMoveIdx++)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        for (int j = 0; j < 5; j++)
+                        {
+
+                            if (this.state[i, j] != '-')
+                            {
+                                bool canMoveThisPiece = false;
+                                if (this.isPlayerMove)
+                                {
+                                    if (this.state[i, j] == 'p' || this.state[i, j] == 'P')
+                                    {
+                                        canMoveThisPiece = true;
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.state[i, j] == 'b' || this.state[i, j] == 'B')
+                                    {
+                                        canMoveThisPiece = true;
+                                    }
+                                }
+                                
+                                if(canMoveThisPiece)
+                                {
+                                    bool canMove;
+                                    String info;
+
+                                    GameState copyState = this.GetStateCloned();
+                                    Coordinate nowCoor = new Coordinate(j, i);
+
+                                    (canMove, info) = copyState.Step(nowCoor, cardNow, cardMoveIdx);
+
+                                    if (canMove)
+                                    {
+                                        gameStateList.Add(copyState);
+                                        gameCardList.Add(cardNow);
+                                        gameCardIdxList.Add(cardMoveIdx);
+                                        startFromList.Add(nowCoor);
+                                    }
+                                }
+                            }
+                            
+
+                        }
+                    }
+
+                }
+            }
+
+            
+            return (gameStateList, startFromList, gameCardList, gameCardIdxList);
         }
 
     }

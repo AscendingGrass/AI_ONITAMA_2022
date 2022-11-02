@@ -40,6 +40,16 @@ namespace AI_ONITAMA_2022
                 }
             }
 
+            if(!gameState.isPlayerMove)
+            {
+                Card cardUseBot = null;
+                int cardIdxUseBot = -1;
+                Coordinate startCoorBot = new Coordinate(-1, -1);
+                (startCoorBot, cardUseBot, cardIdxUseBot) = AiMove.getMove(gameState);
+
+                gameState.Step(startCoorBot, cardUseBot, cardIdxUseBot);
+            }
+
             renderNow();
 
 
@@ -143,7 +153,7 @@ namespace AI_ONITAMA_2022
                 {
                     cardMove = 3;
                 }
-                
+
                 if (gameState.isPlayerMove)
                 {
                     if (playerBox.Text == gameState.playerCard[0].ToString())
@@ -155,9 +165,20 @@ namespace AI_ONITAMA_2022
                     {
                         gameState.Step(start, gameState.playerCard[1], cardMove);
                     }
+
+                    Card cardUseBot = null;
+                    int cardIdxUseBot = -1;
+                    Coordinate startCoorBot = new Coordinate(-1, -1);
+                    (startCoorBot, cardUseBot, cardIdxUseBot) = AiMove.getMove(gameState);
+
+                    gameState.Step(startCoorBot, cardUseBot, cardIdxUseBot);
+                    //MessageBox.Show(gameState.staticBoardEvaluatorValue() + "");
                 }
+                /*
                 else
-                {
+                { 
+                    
+                    
                     if (botBox.Text == gameState.enemyCard[0].ToString())
                     {
                         gameState.Step(start, gameState.enemyCard[0], cardMove);
@@ -168,7 +189,7 @@ namespace AI_ONITAMA_2022
                         gameState.Step(start, gameState.enemyCard[1], cardMove);
                     }
                 }
-                    
+                */
                 
                 
             } else

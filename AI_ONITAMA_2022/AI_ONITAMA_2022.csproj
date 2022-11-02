@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="CardList.cs" />
+    <Compile Include="AiMove.cs" />
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
