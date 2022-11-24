@@ -16,13 +16,10 @@ namespace AI_ONITAMA_2022
 
         public GameState currentState;
 
-        private int myVar;
+        private bool navCollapsed = false;
+        private int animationSpeed = 1;
+        private Timer t = null;
 
-        public int MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
 
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -40,6 +37,7 @@ namespace AI_ONITAMA_2022
             formNow.ShowDialog();
             formNow.Dispose();
 
+            
 
         }
 
@@ -63,21 +61,98 @@ namespace AI_ONITAMA_2022
             ((Control)sender).BackColor = Color.Transparent;
         }
 
-
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void label4_Click(object sender, EventArgs e)
         {
-            this.WindowState = this.WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
+            //450,550
+            double ratioX = panel10.Parent.Width;
+            double ratioY = panel10.Parent.Height;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            //ratioX = panel10.Parent.Width / ratioY;
+            ratioY = panel10.Parent.Height / ratioY;
+            panel10.Width = (int)(panel10.Width * ratioY);
+            panel10.Height = (int)(panel10.Height * ratioY);
+            panel10.Top = (panel10.Parent.Height - panel10.Height) / 2;
+            panel10.Left = (panel10.Parent.Width - panel10.Width) / 2 - (panel6.Width+20)/2 + 30;
+
+            panel6.Width = (int)(panel6.Width * ratioY);
+            panel6.Height = (int)(panel6.Height * ratioY);
+            panel6.Top = (panel6.Parent.Height - panel6.Height) / 2;
+            panel6.Left = panel10.Left + panel10.Width + 10;
+
+            panel11.Height = panel6.Height;
+            panel12.Height = panel6.Height;
+        }
+
+        private void ToggleCollapse(object sender, EventArgs e)
+        {
+            if (t != null) t.Stop();
+            navCollapsed = !navCollapsed;
+            t = new Timer {
+                Interval = 10
+            };
+            // open : 280
+            // collapsed : 68
+            int accel = 0;
+            if (navCollapsed)
+            {
+                t.Tick += (snd, evt) => TranslateNavWidth(62);
+            }
+            else
+            {
+                t.Tick += (snd, evt) => TranslateNavWidth(280);
+            }
+            t.Start();
+
+            void TranslateNavWidth(int target)
+            {
+                accel += animationSpeed;
+                if(panel4.Width > target)
+                {
+                    int temp = panel4.Width - accel;
+                    if(temp <= target)
+                    {
+                        panel4.Width = target;
+                        t.Stop();
+                        t = null;
+                    }
+                    else
+                    {
+                        panel4.Width = temp;
+                    }
+                }
+                else
+                {
+                    int temp = panel4.Width + accel;
+                    if (temp >= target)
+                    {
+                        panel4.Width = target;
+                        t.Stop();
+                        t = null;
+                    }
+                    else
+                    {
+                        panel4.Width = temp;
+                    }
+                }
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            label4_Click(this, null);
         }
     }
 }

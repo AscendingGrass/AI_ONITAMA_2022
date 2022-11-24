@@ -126,5 +126,8 @@
   <ItemGroup>
     <None Include="Resources\onitama4.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
