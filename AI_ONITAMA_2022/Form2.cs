@@ -17,7 +17,7 @@ namespace AI_ONITAMA_2022
         GameState gameState;
         Coordinate start;
 
-        public Form2(OnitamaForm form)
+        public Form2()
         {
             
             InitializeComponent();
