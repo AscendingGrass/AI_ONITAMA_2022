@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CardList.cs" />
     <Compile Include="AiMove.cs" />
@@ -128,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,6 +16,7 @@ namespace AI_ONITAMA_2022
 
         public GameState currentState;
 
+        private Panel[,] board = new Panel[5, 5];
         private bool navCollapsed = false;
         private int animationSpeed = 1;
         private Timer t = null;
@@ -31,14 +32,53 @@ namespace AI_ONITAMA_2022
         public MainForm()
         {
             InitializeComponent();
+            InitializeBoard();
             currentState = new GameState();
 
             Form2 formNow = new Form2();
             formNow.ShowDialog();
             formNow.Dispose();
+        }
 
-            
+        private void InitializeBoard()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    var temp = new BoardPanel(j,i){
+                        Dock = DockStyle.Fill,
+                        BackColor = BoardPanel.DefaultColor,
+                        Margin = new Padding(1),
+                        //Highlighted = (i+j)%2==0
+                    };
+                    temp.MouseEnter += BoardCellMouseEnter;
+                    temp.MouseLeave += BoardCellMouseLeave;
+                    temp.Click += BoardCellClick;
+                    board[i, j] = temp;
+                    tableLayoutPanel1.Controls.Add(temp, j, i);
+                }
+            }
+        }
 
+
+
+        private void BoardCellClick(object sender, EventArgs e)
+        {
+            var temp = (BoardPanel)sender;
+            temp.Highlighted = !temp.Highlighted;
+        }
+
+        private void BoardCellMouseEnter(object sender, EventArgs e)
+        {
+            var temp = (BoardPanel)sender;
+            temp.BackColor = temp.Highlighted ? BoardPanel.HighlightColorHover: BoardPanel.DefaultColorHover;
+        }
+
+        private void BoardCellMouseLeave(object sender, EventArgs e)
+        {
+            var temp = (BoardPanel)sender;
+            temp.BackColor = temp.Highlighted ? BoardPanel.HighlightColor : BoardPanel.DefaultColor;
         }
 
         public void ResetGame()
