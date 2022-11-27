@@ -135,5 +135,110 @@
   <ItemGroup>
     <None Include="Resources\boar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tigeropp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boaropp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cobra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cobraopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crabopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\craneopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dragon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dragonopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eelopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elephant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elephantopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frogopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gooseopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\horse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\horseopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\king.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mantis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mantisopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oxopp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rabbit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rabbitop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redpion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rooster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roosteropp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tiger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monkeyFinal.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

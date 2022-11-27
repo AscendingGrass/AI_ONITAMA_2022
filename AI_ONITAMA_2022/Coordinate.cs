@@ -33,12 +33,25 @@ namespace AI_ONITAMA_2022
             c1.X != c2.X || c1.Y != c2.Y;
 
         #endregion
+        public void Deconstruct(out double x, out double y) =>
+            (x, y) = (X, Y);
 
         public override string ToString() =>
             $"Coord({X},{Y})";
 
-        public void Deconstruct(out double x, out double y) =>
-            (x, y) = (X, Y);
+        public override bool Equals(object obj)
+        {
+            var temp = (Coordinate)obj;
+            return X == temp.X && Y == temp.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 1861411795;
+            hashCode = hashCode * -1521134295 + X.GetHashCode();
+            hashCode = hashCode * -1521134295 + Y.GetHashCode();
+            return hashCode;
+        }
     }
 
 }

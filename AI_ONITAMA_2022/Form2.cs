@@ -168,9 +168,8 @@ namespace AI_ONITAMA_2022
 
                     Card cardUseBot = null;
                     int cardIdxUseBot = -1;
-                    Coordinate startCoorBot = new Coordinate(-1, -1);
+                    Coordinate startCoorBot = Coordinate.Minus;
                     (startCoorBot, cardUseBot, cardIdxUseBot) = AiMove.getMove(gameState);
-
                     gameState.Step(startCoorBot, cardUseBot, cardIdxUseBot);
                     //MessageBox.Show(gameState.staticBoardEvaluatorValue() + "");
                 }

@@ -32,32 +32,48 @@ namespace AI_ONITAMA_2022
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel22 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,7 +88,7 @@ namespace AI_ONITAMA_2022
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(877, 37);
             this.panel1.TabIndex = 0;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.header_MouseDown);
             // 
             // label3
             // 
@@ -97,6 +113,21 @@ namespace AI_ONITAMA_2022
             this.panel3.Size = new System.Drawing.Size(60, 37);
             this.panel3.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("UD Digi Kyokasho NK-R", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Image = global::AI_ONITAMA_2022.Properties.Resources.reject;
+            this.label1.Location = new System.Drawing.Point(2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 37);
+            this.label1.TabIndex = 0;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.MouseEnter += new System.EventHandler(this.Button_Enter);
+            this.label1.MouseLeave += new System.EventHandler(this.Button_Leave);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -119,6 +150,27 @@ namespace AI_ONITAMA_2022
             this.panel9.Size = new System.Drawing.Size(597, 605);
             this.panel9.TabIndex = 2;
             // 
+            // panel6
+            // 
+            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel6.Controls.Add(this.panel22);
+            this.panel6.Location = new System.Drawing.Point(462, 249);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(5);
+            this.panel6.Size = new System.Drawing.Size(100, 100);
+            this.panel6.TabIndex = 1;
+            // 
+            // panel22
+            // 
+            this.panel22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel22.Location = new System.Drawing.Point(5, 5);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(90, 90);
+            this.panel22.TabIndex = 2;
+            // 
             // panel10
             // 
             this.panel10.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -130,65 +182,6 @@ namespace AI_ONITAMA_2022
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(450, 599);
             this.panel10.TabIndex = 0;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.Purple;
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(0, 499);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(450, 100);
-            this.panel12.TabIndex = 1;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.Purple;
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(450, 100);
-            this.panel11.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Controls.Add(this.panel8);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(280, 605);
-            this.panel4.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 96);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(280, 48);
-            this.panel5.TabIndex = 4;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 48);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(280, 48);
-            this.panel7.TabIndex = 3;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            this.panel8.Controls.Add(this.label5);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(280, 48);
-            this.panel8.TabIndex = 2;
             // 
             // panel13
             // 
@@ -222,16 +215,141 @@ namespace AI_ONITAMA_2022
             this.tableLayoutPanel1.Size = new System.Drawing.Size(370, 374);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // panel6
+            // panel12
             // 
-            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel6.BackgroundImage = global::AI_ONITAMA_2022.Properties.Resources.boar;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel6.Location = new System.Drawing.Point(462, 249);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(100, 100);
-            this.panel6.TabIndex = 1;
+            this.panel12.BackColor = System.Drawing.Color.Transparent;
+            this.panel12.Controls.Add(this.panel15);
+            this.panel12.Controls.Add(this.panel14);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel12.Location = new System.Drawing.Point(0, 499);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(450, 100);
+            this.panel12.TabIndex = 1;
+            // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel15.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel15.Controls.Add(this.panel19);
+            this.panel15.Location = new System.Drawing.Point(229, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Padding = new System.Windows.Forms.Padding(5);
+            this.panel15.Size = new System.Drawing.Size(100, 100);
+            this.panel15.TabIndex = 0;
+            // 
+            // panel19
+            // 
+            this.panel19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel19.Location = new System.Drawing.Point(5, 5);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(90, 90);
+            this.panel19.TabIndex = 1;
+            this.panel19.Tag = "0";
+            this.panel19.Click += new System.EventHandler(this.panel19_Click);
+            this.panel19.MouseEnter += new System.EventHandler(this.CardMouseEnter);
+            this.panel19.MouseLeave += new System.EventHandler(this.CardMouseLeave);
+            // 
+            // panel14
+            // 
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel14.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel14.Controls.Add(this.panel18);
+            this.panel14.Location = new System.Drawing.Point(123, 0);
+            this.panel14.Name = "panel14";
+            this.panel14.Padding = new System.Windows.Forms.Padding(5);
+            this.panel14.Size = new System.Drawing.Size(100, 100);
+            this.panel14.TabIndex = 0;
+            // 
+            // panel18
+            // 
+            this.panel18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel18.Location = new System.Drawing.Point(5, 5);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(90, 90);
+            this.panel18.TabIndex = 0;
+            this.panel18.Tag = "0";
+            this.panel18.Click += new System.EventHandler(this.panel18_Click);
+            this.panel18.MouseEnter += new System.EventHandler(this.CardMouseEnter);
+            this.panel18.MouseLeave += new System.EventHandler(this.CardMouseLeave);
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.Transparent;
+            this.panel11.Controls.Add(this.panel17);
+            this.panel11.Controls.Add(this.panel16);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(450, 100);
+            this.panel11.TabIndex = 0;
+            // 
+            // panel17
+            // 
+            this.panel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel17.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel17.Controls.Add(this.panel21);
+            this.panel17.Location = new System.Drawing.Point(228, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Padding = new System.Windows.Forms.Padding(5);
+            this.panel17.Size = new System.Drawing.Size(100, 100);
+            this.panel17.TabIndex = 1;
+            // 
+            // panel21
+            // 
+            this.panel21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel21.Location = new System.Drawing.Point(5, 5);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(90, 90);
+            this.panel21.TabIndex = 2;
+            // 
+            // panel16
+            // 
+            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel16.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel16.Controls.Add(this.panel20);
+            this.panel16.Location = new System.Drawing.Point(122, 0);
+            this.panel16.Name = "panel16";
+            this.panel16.Padding = new System.Windows.Forms.Padding(5);
+            this.panel16.Size = new System.Drawing.Size(100, 100);
+            this.panel16.TabIndex = 2;
+            // 
+            // panel20
+            // 
+            this.panel20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel20.Location = new System.Drawing.Point(5, 5);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(90, 90);
+            this.panel20.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(280, 605);
+            this.panel4.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 96);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(280, 48);
+            this.panel5.TabIndex = 4;
             // 
             // label2
             // 
@@ -247,8 +365,18 @@ namespace AI_ONITAMA_2022
             this.label2.TabIndex = 0;
             this.label2.Text = "             Restart";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             this.label2.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.label2.MouseLeave += new System.EventHandler(this.Button_Leave);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label4);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 48);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(280, 48);
+            this.panel7.TabIndex = 3;
             // 
             // label4
             // 
@@ -268,6 +396,16 @@ namespace AI_ONITAMA_2022
             this.label4.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.label4.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.panel8.Controls.Add(this.label5);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(280, 48);
+            this.panel8.TabIndex = 2;
+            // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
@@ -286,27 +424,13 @@ namespace AI_ONITAMA_2022
             this.label5.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.label5.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("UD Digi Kyokasho NK-R", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Image = global::AI_ONITAMA_2022.Properties.Resources.reject;
-            this.label1.Location = new System.Drawing.Point(2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 37);
-            this.label1.TabIndex = 0;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            this.label1.MouseEnter += new System.EventHandler(this.Button_Enter);
-            this.label1.MouseLeave += new System.EventHandler(this.Button_Leave);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(877, 642);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -316,12 +440,19 @@ namespace AI_ONITAMA_2022
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -347,5 +478,14 @@ namespace AI_ONITAMA_2022
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Panel panel22;
     }
 }

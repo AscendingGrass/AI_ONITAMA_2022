@@ -10,10 +10,11 @@ namespace AI_ONITAMA_2022
 {
     class BoardPanel : Panel
     {
+        public static Color DefaultTempleColor = Color.FromArgb(90,90,90);
         public static Color HighlightColor = Color.FromArgb(192, 0, 192);
         public static Color HighlightColorHover = Color.Fuchsia;
-        public static Color DefaultColor = SystemColors.ControlDarkDark;
-        public static Color DefaultColorHover = SystemColors.ControlDark;
+        public Color DefaultColor = SystemColors.ControlDarkDark;
+        public Color DefaultColorHover = SystemColors.ControlDark;
 
         public readonly int X, Y;
 
@@ -26,6 +27,8 @@ namespace AI_ONITAMA_2022
 
         public BoardPanel(int x, int y)
         {
+            if ((y == 0 || y == 4) && (x == 2)) DefaultColor = DefaultTempleColor;
+            BackColor = DefaultColor;
             X = x;
             Y = y;
         }

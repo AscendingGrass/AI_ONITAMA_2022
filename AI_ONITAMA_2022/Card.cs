@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace AI_ONITAMA_2022
 {
     public class Card
     {
+        public Image playerIcon, enemyIcon;
         Coordinate[] playerMove;
         Coordinate[] enemyMove;
         bool isPlayer;
