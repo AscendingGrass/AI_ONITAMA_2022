@@ -1,5 +1,6 @@
 ﻿using AI_ONITAMA_2022.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -11,12 +12,32 @@ namespace AI_ONITAMA_2022
 
         public GameState currentState;
 
+        
+        private Stack<GameState> undoStack = new Stack<GameState>();
+        private Stack<GameState> redoStack = new Stack<GameState>();
         private Coordinate selectedCell = Coordinate.Minus;
-        private int selectedCard;
         private BoardPanel[,] board = new BoardPanel[5, 5];
+        private string message = string.Empty;
         private bool navCollapsed = false;
+        private bool mboxCollapsed = true;
         private int animationSpeed = 1;
-        private Timer t = null;
+        private int selectedCard = -1;
+        private Timer tMBox = null;
+        private Timer tNav  = null;
+
+        private string Message 
+        {
+            get => message;
+            set 
+            {
+                message = value;
+                if (value != string.Empty)
+                {
+                    lb_message.Text = value;
+                }
+                ShowMessageBox(value != string.Empty);
+            } 
+        }
 
         private int SelectedCard
         {
@@ -27,7 +48,7 @@ namespace AI_ONITAMA_2022
                 tableLayoutPanel1.Enabled = value != -1;
                 panel14.BackColor = value == 0 ? BoardPanel.HighlightColor : SystemColors.ControlDarkDark;
                 panel15.BackColor = value == 1 ? BoardPanel.HighlightColor : SystemColors.ControlDarkDark;
-                if (selectedCell != Coordinate.Minus) HighlightMoves();
+                if(selectedCell != Coordinate.Minus) HighlightMoves();
             }
         }
 
@@ -45,9 +66,10 @@ namespace AI_ONITAMA_2022
             InitializeBoard();
             ResetGame();
 
-            Form2 formNow = new Form2();
-            formNow.ShowDialog();
-            formNow.Dispose();
+            //bug visual nggk tau kenapa harus diginiin dulu
+            Button_Leave(label6,null);
+            Button_Leave(label7,null);
+            
         }
 
         private void InitializeBoard()
@@ -115,7 +137,6 @@ namespace AI_ONITAMA_2022
 
         private void ResetHighlights()
         {
-            
             foreach (var item in board)
             {
                 item.Enabled = true;
@@ -149,17 +170,44 @@ namespace AI_ONITAMA_2022
             RefreshBoard();
         }
 
+        private bool CheckGameOver(out bool status)
+        {
+            int temp = currentState.staticBoardEvaluatorValue();
+            status = false;
+            if(temp == 1000000 || temp == -1000000)
+            {
+                status = temp == -1000000;
+                return true;
+            }
+            return false;
+        }
+
         private void BoardCellClick(object sender, EventArgs e)
         {
             var temp = (BoardPanel)sender;
             if (SelectedCard == -1) return;
             if (board[temp.Y,temp.X].Highlighted && (int)board[temp.Y, temp.X].Tag!=-1)
             {
+                PushUndo(currentState.GetStateCloned());
+                ClearRedo();
                 currentState.Step(selectedCell, currentState.playerCard[SelectedCard], (int)board[temp.Y, temp.X].Tag);
                 RefreshBoard();
+                if (CheckGameOver(out _)) //player wins
+                {
+                    Message = "You Won!";
+                    panel9.Enabled = false;
+                    return;
+                }
                 AIMove();
+                if (CheckGameOver(out _)) //AI wins
+                {
+                    Message = "You Lost!";
+                    panel9.Enabled = false;
+                    return;
+                }
                 return;
             }
+
             if (currentState.state[temp.Y, temp.X] != 'p' && currentState.state[temp.Y, temp.X] != 'P') return;
 
             selectedCell = new Coordinate(temp.X, temp.Y);
@@ -181,8 +229,50 @@ namespace AI_ONITAMA_2022
 
         public void ResetGame()
         {
+            panel9.Enabled = true;
             currentState = new GameState() { isPlayerMove = true};
+            Message = string.Empty;
+            ClearUndo();
+            ClearRedo();
             RefreshBoard();
+        }
+
+        private GameState PopUndo()
+        {
+            var temp = undoStack.Pop();
+            if (undoStack.Count == 0) label6.Enabled = false;
+            return temp;
+        }
+
+        private void PushUndo(GameState state)
+        {
+            label6.Enabled = true;
+            undoStack.Push(state);
+        }
+
+        private void ClearUndo()
+        {
+            undoStack.Clear();
+            label6.Enabled = false;
+        }
+
+        private GameState PopRedo()
+        {
+            var temp = redoStack.Pop();
+            if (redoStack.Count == 0) label7.Enabled = false;
+            return temp;
+        }
+
+        private void PushRedo(GameState state)
+        {
+            label7.Enabled = true;
+            redoStack.Push(state);
+        }
+
+        private void ClearRedo()
+        {
+            redoStack.Clear();
+            label7.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e) => this.Close();
@@ -237,9 +327,9 @@ namespace AI_ONITAMA_2022
 
         private void ToggleCollapse(object sender, EventArgs e)
         {
-            if (t != null) t.Stop();
+            if (tNav != null) tNav.Stop();
             navCollapsed = !navCollapsed;
-            t = new Timer
+            tNav = new Timer
             {
                 Interval = 10
             };
@@ -248,13 +338,13 @@ namespace AI_ONITAMA_2022
             int accel = 0;
             if (navCollapsed)
             {
-                t.Tick += (snd, evt) => TranslateNavWidth(62);
+                tNav.Tick += (snd, evt) => TranslateNavWidth(62);
             }
             else
             {
-                t.Tick += (snd, evt) => TranslateNavWidth(280);
+                tNav.Tick += (snd, evt) => TranslateNavWidth(280);
             }
-            t.Start();
+            tNav.Start();
 
             void TranslateNavWidth(int target)
             {
@@ -265,8 +355,8 @@ namespace AI_ONITAMA_2022
                     if (temp <= target)
                     {
                         panel4.Width = target;
-                        t.Stop();
-                        t = null;
+                        tNav.Stop();
+                        tNav = null;
                     }
                     else
                     {
@@ -279,8 +369,8 @@ namespace AI_ONITAMA_2022
                     if (temp >= target)
                     {
                         panel4.Width = target;
-                        t.Stop();
-                        t = null;
+                        tNav.Stop();
+                        tNav = null;
                     }
                     else
                     {
@@ -290,7 +380,67 @@ namespace AI_ONITAMA_2022
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e) => label4_Click(this, null);
+        private void ShowMessageBox(bool value)
+        {
+            if (tMBox != null) tMBox.Stop();
+            mboxCollapsed = !value;
+            tMBox = new Timer
+            {
+                Interval = 10
+            };
+
+            int accel = 0;
+            if (mboxCollapsed)
+            {
+                tMBox.Tick += (snd, evt) => TranslateMessageBox(191);
+            }
+            else
+            {
+                tMBox.Tick += (snd, evt) => TranslateMessageBox(0);
+            }
+            tMBox.Start();
+
+            void TranslateMessageBox(int target)
+            {
+                target += panel25.Parent.Width-panel25.Width;
+                accel += animationSpeed;
+                if (panel25.Left > target)
+                {
+                    int temp = panel25.Left - accel;
+                    if (temp <= target)
+                    {
+                        panel25.Left = target;
+                        tMBox.Stop();
+                        tMBox = null;
+                        //if (mboxCollapsed) lb_message.Text = string.Empty;
+                    }
+                    else
+                    {
+                        panel25.Left = temp;
+                    }
+                }
+                else
+                {
+                    int temp = panel25.Left + accel;
+                    if (temp >= target)
+                    {
+                        panel25.Left = target;
+                        tMBox.Stop();
+                        tMBox = null;
+                        //if (mboxCollapsed) lb_message.Text = string.Empty;
+                    }
+                    else
+                    {
+                        panel25.Left = temp;
+                    }
+                }
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            label4_Click(this, null);
+        }
 
         private void CardMouseEnter(object sender, EventArgs e)
         {
@@ -312,5 +462,27 @@ namespace AI_ONITAMA_2022
         private void panel18_Click(object sender, EventArgs e) => SelectedCard = 0;
 
         private void panel19_Click(object sender, EventArgs e) => SelectedCard = 1;
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            PushRedo(currentState.GetStateCloned());
+            currentState = PopUndo();
+            Message = string.Empty;
+            panel9.Enabled = true;
+            RefreshBoard();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            PushUndo(currentState.GetStateCloned());
+            currentState = PopRedo();
+            RefreshBoard();
+            if (CheckGameOver(out bool playerWon))
+            {
+                Message = playerWon?"You Won!":"You Lost!";
+                panel9.Enabled = false;
+                return;
+            }
+        }
     }
 }

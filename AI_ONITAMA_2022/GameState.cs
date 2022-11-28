@@ -17,8 +17,6 @@ namespace AI_ONITAMA_2022
         public Card[] enemyCard;
         public Card neutralCard;
 
-        // this event will execute if CheckGameOver returns true
-        public event EventHandler<GameOverEventArgs> OnGameOver;
 
         private void Reset()
         {
@@ -350,34 +348,6 @@ namespace AI_ONITAMA_2022
             }
 
             return sbeValNow;
-        }
-
-        //check if game is over, it will invoke the OnGameOver event if true
-        public bool CheckGameOver()
-        {
-            var playerPos = GetPositionOf('P');
-            var botPos = GetPositionOf('B');
-            if (botPos == Coordinate.Minus)
-            {
-                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "player", Condition = WinCondition.KingDeath });
-                return true;
-            }
-            if (playerPos == Coordinate.Minus)
-            {
-                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "bot", Condition = WinCondition.KingDeath });
-                return true;
-            }
-            if (playerPos == new Coordinate(2,0))
-            {
-                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "player", Condition = WinCondition.TempleTakenOver });
-                return true;
-            }
-            if (botPos == new Coordinate(2,4))
-            {
-                OnGameOver?.Invoke(this, new GameOverEventArgs { Winner = "bot", Condition = WinCondition.TempleTakenOver });
-                return true;
-            }
-            return false;
         }
 
         public (List<GameState>, List<Coordinate> ,List<Card>, List<int>) getAllPossibleMove()
