@@ -12,7 +12,22 @@ namespace AI_ONITAMA_2022
 
         public GameState currentState;
 
-        
+
+        //private GameState test = new GameState()
+        //{
+        //    state = new char[5, 5] {
+        //        {'-','-','-','-','-' },
+        //        {'b','-','-','p','-' },
+        //        {'b','B','-','P','-' },
+        //        {'-','-','-','-','-' },
+        //        {'p','-','-','-','-' },
+        //    },
+        //    playerCard = new Card[2] { CardList.cardList[3], CardList.cardList[12] },
+        //    enemyCard = new Card[2] { CardList.cardList[11], CardList.cardList[7] },
+        //    neutralCard = CardList.cardList[10],
+        //    isPlayerMove = true
+        //};
+
         private Stack<GameState> undoStack = new Stack<GameState>();
         private Stack<GameState> redoStack = new Stack<GameState>();
         private Coordinate selectedCell = Coordinate.Minus;
@@ -65,6 +80,9 @@ namespace AI_ONITAMA_2022
             InitializeComponent();
             InitializeBoard();
             ResetGame();
+
+            //currentState = test;
+            //RefreshBoard();
 
             //bug visual nggk tau kenapa harus diginiin dulu
             Button_Leave(label6,null);

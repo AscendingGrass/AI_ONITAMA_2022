@@ -9,13 +9,15 @@ namespace AI_ONITAMA_2022
 
     public class AiMove
     {
+        private static int MAX_PLY = 4;
         
         public static int maxValueAi(GameState stateNow, int depthNow, int alpha, int beta)
         {
             int sbeNow = stateNow.staticBoardEvaluatorValue();
             if (Math.Abs(sbeNow) >= 100000 || depthNow == 0)
             {
-                return sbeNow;
+                int tempSBE = (int)(sbeNow * Math.Pow((0.99), MAX_PLY - depthNow));
+                return tempSBE;
             }
             else
             {
@@ -54,9 +56,11 @@ namespace AI_ONITAMA_2022
         public static int minValueAi(GameState stateNow, int depthNow, int alpha, int beta)
         {
             int sbeNow = stateNow.staticBoardEvaluatorValue();
+            
             if (Math.Abs(sbeNow) >= 100000 || depthNow == 0)
             {
-                return sbeNow;
+                int tempSBE = (int)(sbeNow * Math.Pow((0.99), MAX_PLY - depthNow));
+                return tempSBE;
             }
             else
             {
@@ -73,6 +77,7 @@ namespace AI_ONITAMA_2022
                 for (int i = 0; i < gameStateList.Count; i++)
                 {
                     int valueNow = maxValueAi(gameStateList[i], depthNow - 1, alpha, beta);
+                    
                     if (valueNow < minMoveValue)
                     {
                         minMoveValue = valueNow;
@@ -111,8 +116,9 @@ namespace AI_ONITAMA_2022
 
             for (int i = 0;i < gameStateList.Count;i++)
             {
-                int valueNow = minValueAi(gameStateList[i],4,-2000000,2000000);
-                if(valueNow > maxMoveValue)
+                int valueNow = minValueAi(gameStateList[i], MAX_PLY, -2000000,2000000);
+                
+                if(valueNow >= maxMoveValue)
                 {
                     maxMoveValue = valueNow;
                     cardUse = gameCardList[i];
