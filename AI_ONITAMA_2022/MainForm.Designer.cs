@@ -59,6 +59,10 @@ namespace AI_ONITAMA_2022
             this.label7 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -81,6 +85,8 @@ namespace AI_ONITAMA_2022
             this.panel5.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel23.SuspendLayout();
+            this.panel26.SuspendLayout();
+            this.panel27.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.SuspendLayout();
@@ -370,6 +376,7 @@ namespace AI_ONITAMA_2022
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.panel24);
             this.panel4.Controls.Add(this.panel23);
+            this.panel4.Controls.Add(this.panel26);
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.panel8);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
@@ -383,7 +390,7 @@ namespace AI_ONITAMA_2022
             // 
             this.panel5.Controls.Add(this.label2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 192);
+            this.panel5.Location = new System.Drawing.Point(0, 240);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(280, 48);
             this.panel5.TabIndex = 4;
@@ -410,7 +417,7 @@ namespace AI_ONITAMA_2022
             // 
             this.panel24.Controls.Add(this.label7);
             this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel24.Location = new System.Drawing.Point(0, 144);
+            this.panel24.Location = new System.Drawing.Point(0, 192);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(280, 48);
             this.panel24.TabIndex = 6;
@@ -437,7 +444,7 @@ namespace AI_ONITAMA_2022
             // 
             this.panel23.Controls.Add(this.label6);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(0, 96);
+            this.panel23.Location = new System.Drawing.Point(0, 144);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(280, 48);
             this.panel23.TabIndex = 5;
@@ -459,6 +466,70 @@ namespace AI_ONITAMA_2022
             this.label6.Click += new System.EventHandler(this.label6_Click);
             this.label6.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.label6.MouseLeave += new System.EventHandler(this.Button_Leave);
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.panel27);
+            this.panel26.Controls.Add(this.label8);
+            this.panel26.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel26.Location = new System.Drawing.Point(0, 96);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(280, 48);
+            this.panel26.TabIndex = 7;
+            // 
+            // panel27
+            // 
+            this.panel27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.panel27.Controls.Add(this.textBox1);
+            this.panel27.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel27.Location = new System.Drawing.Point(212, 0);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(68, 48);
+            this.panel27.TabIndex = 1;
+            this.panel27.Click += new System.EventHandler(this.maxPly_Clicked);
+            this.panel27.MouseEnter += new System.EventHandler(this.label8_MouseEnter);
+            this.panel27.MouseLeave += new System.EventHandler(this.label8_MouseLeave);
+            // 
+            // textBox1
+            // 
+            this.textBox1.AcceptsReturn = true;
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.textBox1.Location = new System.Drawing.Point(19, 17);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.textBox1.MaxLength = 1;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(30, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Test";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Click += new System.EventHandler(this.maxPly_Clicked);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.MouseEnter += new System.EventHandler(this.label8_MouseEnter);
+            this.textBox1.MouseLeave += new System.EventHandler(this.label8_MouseLeave);
+            this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseUp);
+            // 
+            // label8
+            // 
+            this.label8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label8.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label8.Image = global::AI_ONITAMA_2022.Properties.Resources.stacks;
+            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Location = new System.Drawing.Point(0, 0);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(20, 5, 5, 5);
+            this.label8.Size = new System.Drawing.Size(212, 48);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "             Max Ply";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Click += new System.EventHandler(this.maxPly_Clicked);
+            this.label8.MouseEnter += new System.EventHandler(this.label8_MouseEnter);
+            this.label8.MouseLeave += new System.EventHandler(this.label8_MouseLeave);
             // 
             // panel7
             // 
@@ -511,7 +582,7 @@ namespace AI_ONITAMA_2022
             this.label5.TabIndex = 0;
             this.label5.Text = "             Expand/Collapse";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label5.Click += new System.EventHandler(this.ToggleCollapse);
+            this.label5.Click += new System.EventHandler(this.expandCollapse_Clicked);
             this.label5.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.label5.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
@@ -545,6 +616,9 @@ namespace AI_ONITAMA_2022
             this.panel5.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             this.panel23.ResumeLayout(false);
+            this.panel26.ResumeLayout(false);
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -587,5 +661,9 @@ namespace AI_ONITAMA_2022
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Label lb_message;
+        private System.Windows.Forms.Panel panel26;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

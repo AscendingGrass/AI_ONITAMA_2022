@@ -35,6 +35,7 @@ namespace AI_ONITAMA_2022
         private string message = string.Empty;
         private bool navCollapsed = false;
         private bool mboxCollapsed = true;
+        private bool maxPlyFocused = false;
         private int animationSpeed = 1;
         private int selectedCard = -1;
         private Timer tMBox = null;
@@ -67,7 +68,29 @@ namespace AI_ONITAMA_2022
             }
         }
 
+        public bool MaxPlyFocused {
+            get => maxPlyFocused;
+            set 
+            {
+                if (maxPlyFocused == value) return;
 
+                maxPlyFocused = value;
+                if (value)
+                {
+                    textBox1.Focus();
+                    label8.BackColor = Color.FromArgb(192, 0, 192);
+                    panel27.BackColor = Color.FromArgb(162, 0, 162);
+                    textBox1.BackColor = Color.FromArgb(162, 0, 162);
+                    if(navCollapsed)ToggleCollapse();
+                    return;
+                }
+
+                this.ActiveControl = null;
+                label8_MouseLeave(this, null);
+                MaxPlyEntered();
+                
+            }
+        }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -84,9 +107,11 @@ namespace AI_ONITAMA_2022
             //currentState = test;
             //RefreshBoard();
 
+            
             //bug visual nggk tau kenapa harus diginiin dulu
             Button_Leave(label6,null);
             Button_Leave(label7,null);
+            
             
         }
 
@@ -308,6 +333,7 @@ namespace AI_ONITAMA_2022
 
         private void label4_Click(object sender, EventArgs e)
         {
+            MaxPlyFocused = false;
             //450,550
             double ratioY = panel10.Parent.Height;
 
@@ -343,7 +369,7 @@ namespace AI_ONITAMA_2022
             panel17.Left = panel16.Right + 20;
         }
 
-        private void ToggleCollapse(object sender, EventArgs e)
+        private void ToggleCollapse()
         {
             if (tNav != null) tNav.Stop();
             navCollapsed = !navCollapsed;
@@ -396,6 +422,12 @@ namespace AI_ONITAMA_2022
                     }
                 }
             }
+        }
+
+        private void expandCollapse_Clicked(object sender, EventArgs e)
+        {
+            MaxPlyFocused = false;
+            ToggleCollapse();
         }
 
         private void ShowMessageBox(bool value)
@@ -458,6 +490,13 @@ namespace AI_ONITAMA_2022
         private void MainForm_Load(object sender, EventArgs e)
         {
             label4_Click(this, null);
+
+            //saya juga tidak paham
+            Timer t = new Timer { Interval = 100 };
+            t.Tick += (snd, evt) => { MaxPlyEntered(); t.Stop(); t.Dispose();};
+            t.Start();
+
+
         }
 
         private void CardMouseEnter(object sender, EventArgs e)
@@ -475,7 +514,11 @@ namespace AI_ONITAMA_2022
             
         }
 
-        private void label2_Click(object sender, EventArgs e) => ResetGame();
+        private void label2_Click(object sender, EventArgs e)
+        {
+            MaxPlyFocused = false;
+            ResetGame();
+        }
 
         private void panel18_Click(object sender, EventArgs e) => SelectedCard = 0;
 
@@ -483,6 +526,7 @@ namespace AI_ONITAMA_2022
 
         private void label6_Click(object sender, EventArgs e)
         {
+            MaxPlyFocused = false;
             PushRedo(currentState.GetStateCloned());
             currentState = PopUndo();
             Message = string.Empty;
@@ -492,6 +536,7 @@ namespace AI_ONITAMA_2022
 
         private void label7_Click(object sender, EventArgs e)
         {
+            MaxPlyFocused = false;
             PushUndo(currentState.GetStateCloned());
             currentState = PopRedo();
             RefreshBoard();
@@ -501,6 +546,69 @@ namespace AI_ONITAMA_2022
                 panel9.Enabled = false;
                 return;
             }
+        }
+
+        private void label8_MouseEnter(object sender, EventArgs e)
+        {
+            if (maxPlyFocused) return;
+            Button_Enter(label8,e);
+            MaxPlyMouseEnter();
+        }
+
+        private void label8_MouseLeave(object sender, EventArgs e)
+        {
+            if (maxPlyFocused) return;
+            Button_Leave(label8, e);
+            MaxPlyMouseLeave();
+        }
+
+        private void MaxPlyMouseEnter()
+        {
+            panel27.BackColor = Color.FromArgb(0x7B,0x00,0x7B);
+            textBox1.BackColor = Color.FromArgb(0x7B, 0x00, 0x7B);
+        }
+
+        private void MaxPlyMouseLeave()
+        {
+            panel27.BackColor = Color.FromArgb(49, 49, 49);
+            textBox1.BackColor = Color.FromArgb(49,49,49);
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                MaxPlyFocused = false;
+
+            }
+        }
+
+        private void MaxPlyEntered()
+        {
+            this.ActiveControl = null;
+
+            string temp = textBox1.Text;
+            if (int.TryParse(temp, out int result) && result > 0)
+            {
+                AiMove.MAX_PLY = result - 1;
+
+                return;
+            }
+
+            textBox1.Text = (AiMove.MAX_PLY + 1).ToString();
+        }
+
+        private void textBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            textBox1.SelectionLength = 0;
+        }
+
+        private void maxPly_Clicked(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            MaxPlyFocused = true;
         }
     }
 }

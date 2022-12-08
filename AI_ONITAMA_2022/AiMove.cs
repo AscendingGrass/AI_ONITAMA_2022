@@ -9,7 +9,7 @@ namespace AI_ONITAMA_2022
 
     public class AiMove
     {
-        private static int MAX_PLY = 4;
+        public static int MAX_PLY = 4;
         
         public static int maxValueAi(GameState stateNow, int depthNow, int alpha, int beta)
         {

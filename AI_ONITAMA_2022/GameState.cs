@@ -337,7 +337,7 @@ namespace AI_ONITAMA_2022
                 playerAlive = false;
             }
 
-            int sbeValNow = countBot + botDistValue + playerDistValue - countPlayer;
+            int sbeValNow = 3*countBot + botDistValue + playerDistValue - 3*countPlayer;
             if(!playerAlive)
             {
                 sbeValNow = 1000000;
