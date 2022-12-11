@@ -67,6 +67,11 @@ namespace AI_ONITAMA_2022
             this.label4 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel28 = new System.Windows.Forms.Panel();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -89,6 +94,8 @@ namespace AI_ONITAMA_2022
             this.panel27.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel28.SuspendLayout();
+            this.panel29.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -373,6 +380,7 @@ namespace AI_ONITAMA_2022
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.panel28);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.panel24);
             this.panel4.Controls.Add(this.panel23);
@@ -481,7 +489,7 @@ namespace AI_ONITAMA_2022
             // 
             this.panel27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
             this.panel27.Controls.Add(this.textBox1);
-            this.panel27.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.panel27.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel27.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel27.Location = new System.Drawing.Point(212, 0);
             this.panel27.Name = "panel27";
@@ -497,6 +505,7 @@ namespace AI_ONITAMA_2022
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox1.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBox1.Location = new System.Drawing.Point(19, 17);
@@ -586,6 +595,61 @@ namespace AI_ONITAMA_2022
             this.label5.MouseEnter += new System.EventHandler(this.Button_Enter);
             this.label5.MouseLeave += new System.EventHandler(this.Button_Leave);
             // 
+            // panel28
+            // 
+            this.panel28.Controls.Add(this.panel29);
+            this.panel28.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel28.Location = new System.Drawing.Point(0, 541);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(280, 64);
+            this.panel28.TabIndex = 8;
+            // 
+            // panel29
+            // 
+            this.panel29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.panel29.Controls.Add(this.label11);
+            this.panel29.Controls.Add(this.label10);
+            this.panel29.Controls.Add(this.label9);
+            this.panel29.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel29.Location = new System.Drawing.Point(0, 0);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(280, 64);
+            this.panel29.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Leelawadee UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label9.Location = new System.Drawing.Point(64, 5);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 19);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "221116981 Patrick Sutanto";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Leelawadee UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label10.Location = new System.Drawing.Point(67, 24);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(167, 19);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "221116976 Nicholas Arsa";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Leelawadee UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label11.Location = new System.Drawing.Point(76, 45);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(151, 19);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "218116771 Teddy Elim";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -621,6 +685,9 @@ namespace AI_ONITAMA_2022
             this.panel27.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.panel28.ResumeLayout(false);
+            this.panel29.ResumeLayout(false);
+            this.panel29.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -665,5 +732,10 @@ namespace AI_ONITAMA_2022
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel28;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
